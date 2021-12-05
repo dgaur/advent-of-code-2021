@@ -4,6 +4,12 @@ from day2 import Position
 
 
 class TestPosition(unittest.TestCase):
+    def test_axis(self):
+        p = Position(0,0)
+        p.move("down", 2)
+        assert(p.read_displacement() == 0)   # Weird edge-case
+        return
+
     def test_displacement(self):
         p = Position(0,0)
         p.move("down", 2)

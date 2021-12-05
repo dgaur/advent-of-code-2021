@@ -4,17 +4,19 @@
 import sys
 
 class Position(object):
-    def __init__(self, x, y):
+    def __init__(self, x=0, y=0):
         # Initial coords
         self.x = x
         self.y = y
         return
 
     def read_displacement(self):
-        """Displacement from origin"""
+        """Read the displacement from origin"""
+        #XXX but zero displacement when aligned with axis?
         return self.x * self.y
 
     def move(self, dir, distance):
+        """Move some distance in the specified direction"""
         assert(dir in ["up", "down", "forward", "backward"])
         if dir == "up":
             self.y -= distance

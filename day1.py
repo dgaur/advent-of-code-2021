@@ -5,6 +5,10 @@ import sys
 
 
 def count_depth_increases(text):
+    """
+    Count the number of times the depth increases from previous depth.
+    No side effects
+    """
     last_depth = 65535
     increases = 0
 
