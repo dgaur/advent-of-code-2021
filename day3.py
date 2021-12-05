@@ -3,12 +3,17 @@
 
 import sys
 
+
 class Diagnostic(object):
     def __init__(self, reports):
         (self.gamma, self.epsilon) = self.parse_reports(reports)
         return
 
     def parse_reports(self, reports):
+        """
+        Parse diagnostic reports.  Return computed gamma + epsilon values from
+        reports.  No side effects.
+        """
         gamma = 0
         epsilon = 0
 
