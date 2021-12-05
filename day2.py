@@ -14,25 +14,26 @@ class Position(object):
         """Displacement from origin"""
         return self.x * self.y
 
-    def move(self, dir, dist):
+    def move(self, dir, distance):
         assert(dir in ["up", "down", "forward", "backward"])
         if dir == "up":
-            self.y -= dist
+            self.y -= distance
         elif dir == "down":
-            self.y += dist
+            self.y += distance
         elif dir == "forward":
-            self.x += dist
+            self.x += distance
         elif dir == "backward":
-            self.x -= dist
+            self.x -= distance
         else:
             assert(False)
         return
 
 
-p = Position(0,0)
-for command in sys.stdin:
-    (dir, dist) = command.split(maxsplit=2)
-    assert(dist.isdigit())
-    p.move(dir, int(dist))
-print(p.read_displacement())
+if __name__ == "__main__":
+    p = Position(0,0)
+    for command in sys.stdin:
+        (dir, dist) = command.split(maxsplit=2)
+        assert(dist.isdigit())
+        p.move(dir, int(dist))
+    print(p.read_displacement())
 

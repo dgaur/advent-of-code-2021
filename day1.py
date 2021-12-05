@@ -15,7 +15,8 @@ def count_depth_increases(text):
         last_depth = depth
     return increases
 
-print(count_depth_increases(sys.stdin))
+if __name__ == "__main__":
+    print(count_depth_increases(sys.stdin))
 
 
 
