@@ -5,6 +5,7 @@ import sys
 
 SQUARES_PER_ROW = SQUARES_PER_COLUMN = 5
 
+
 # Compute and return the specified row (bingo) of squares.  No side effects.
 def row_bingo(row, square):
     bingo = dict()
@@ -13,6 +14,7 @@ def row_bingo(row, square):
         bingo[s] = True
     return(bingo)
 
+
 # Compute and return the specified column (bingo) of squares.  No side effects.
 def column_bingo(column, square):
     bingo = dict()
@@ -20,6 +22,7 @@ def column_bingo(column, square):
         s = square[row][column]
         bingo[s] = True
     return(bingo)
+
 
 class Board(object):
     def __init__(self, square):
@@ -33,6 +36,17 @@ class Board(object):
             self.bingo.append(column_bingo(column, square))
 
         return
+
+    def play(self, number):
+        for bingo in self.bingo:
+            # Remove the square if present
+            bingo.pop(number, None)
+        return
+
+    def winner(self):
+        # A blank bingo means all squares in that row/column have been drawn (i.e., no
+        # squares are left in that row/column)
+        return [ bingo for bingo in self.bingo if len(bingo) == 0 ]
 
 
 def read_boards(lines):
@@ -61,8 +75,15 @@ if __name__ == "__main__":
     numbers = [ int(number) for number in sys.stdin.readline().split(",") ]
     print(numbers)
 
-    # read boards
+    # Read the individual bingo boards
     boards = read_boards(sys.stdin)
     assert(len(boards) > 0)
+
+    # Now play bingo.  Apply each new number/square in turn until some board wins or
+    # all numbers are exhausted
+    for number in numbers:
+        for board in boards:
+            board.play(number)
+
 
 
