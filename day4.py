@@ -38,23 +38,31 @@ class Board(object):
         return
 
     def play(self, number):
+        """Play a new number on this bingo board"""
         for bingo in self.bingo:
             # Remove the square if present
             bingo.pop(number, None)
         return
 
     def remainder(self):
-        # Sum up the remaining, undrawn squares.  Cut in half, since each remaining square
-        # is double-counted, once in each directiob
-        return int(sum(square for bingo in self.bingo for square in bingo.keys() ) / 2)
+        """Sum up the remaining, undrawn squares.  No side effects"""
+        remainder = sum(square for bingo in self.bingo for square in bingo.keys())
+
+        # Cut in half, since each remaining square is double-counted, once in each direction
+        return int(remainder/2)
+
 
     def winner(self):
+        """Did this board win?"""
         # A blank bingo means all squares in that row/column have been drawn (i.e., no
         # squares are left in that row/column)
         return [ bingo for bingo in self.bingo if len(bingo) == 0 ]
 
 
 def read_boards(lines):
+    """
+    Compute + return a list of boards from text input. No side effects.
+    """
     boards = []
     rows = []
     for line in lines:
@@ -78,7 +86,6 @@ def read_boards(lines):
 if __name__ == "__main__":
     # Read the board/square numbers
     numbers = [ int(number) for number in sys.stdin.readline().split(",") ]
-    print(numbers)
 
     # Read the individual bingo boards
     boards = read_boards(sys.stdin)

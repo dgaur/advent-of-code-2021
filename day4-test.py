@@ -25,6 +25,7 @@ class TestBoard(unittest.TestCase):
 
 
     def test_nonwinner(self):
+        """Test a non-winning board.  Expect it to fail / not win"""
         board = [
             [ 0, 1, 2, 3, 4 ],
             [ 5, 6, 7, 8, 9 ],
@@ -42,6 +43,7 @@ class TestBoard(unittest.TestCase):
 
 
     def test_row_bingo(self):
+        """Test the computation of a single bingo-row, from raw input"""
         board = [
             [ 0, 1, 2, 3, 4 ],
             [ 5, 6, 7, 8, 9 ],
@@ -55,6 +57,7 @@ class TestBoard(unittest.TestCase):
 
 
     def test_winner(self):
+        """Test a winning board"""
         board = [
             [ 0, 1, 2, 3, 4 ],
             [ 5, 6, 7, 8, 9 ],
