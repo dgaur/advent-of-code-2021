@@ -43,6 +43,11 @@ class Board(object):
             bingo.pop(number, None)
         return
 
+    def remainder(self):
+        # Sum up the remaining, undrawn squares.  Cut in half, since each remaining square
+        # is double-counted, once in each directiob
+        return int(sum(square for bingo in self.bingo for square in bingo.keys() ) / 2)
+
     def winner(self):
         # A blank bingo means all squares in that row/column have been drawn (i.e., no
         # squares are left in that row/column)
@@ -84,6 +89,18 @@ if __name__ == "__main__":
     for number in numbers:
         for board in boards:
             board.play(number)
+
+            # Did this board just win?
+            if board.winner():
+                remainder = board.remainder()
+                score = number * remainder
+                print(f"Winner! Reminder {remainder}, final score {score}")
+                sys.exit()
+
+
+    # else, no winner
+    print("No winner")
+
 
 
 
